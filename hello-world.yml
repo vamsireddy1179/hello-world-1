@@ -8,7 +8,7 @@ spec:
       app: hello-worldapp
   template: 
     metadata: 
-	  name: hello-worldpod
+      name: hello-worldpod
       labels: 
         app: hello-worldapp
     spec: 
