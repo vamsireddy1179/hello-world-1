@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata: 
-  name: helloworldds
+  name: helloworldds1
 spec: 
   selector: 
     matchLabels: 
-      app: helloworld
+      app: helloworld1
   template: 
     metadata: 
-      name: helloworldpod
+      name: helloworldpod1
       labels: 
-        app: helloworld
+        app: helloworld1
     spec: 
       containers: 
       - image: vamsireddy179/hello-world:latest
-        name: helloworldcontainer
+        name: helloworldcontainer1
         ports: 
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld
+  name: helloworld1
 spec:
   selector:
-    app: helloworld
+    app: helloworld1
   ports:
   - port: 80
     targetPort: 8080
