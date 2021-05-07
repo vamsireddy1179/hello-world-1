@@ -1,19 +1,31 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
+metadata: 
+  name: helloworldds
+spec: 
+  selector: 
+    matchLabels: 
+      app: helloworld
+  template: 
+    metadata: 
+	  name: helloworldpod
+      labels: 
+        app: helloworld
+    spec: 
+      containers: 
+      - image: vamsireddy179/hello-world:latest
+        name: helloworldcontainer
+        ports: 
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
 metadata:
-  name: nginx-deployment
+  name: helloworld
 spec:
   selector:
-    matchLabels:
-      app: nginx
-  replicas: 2 # tells deployment to run 2 pods matching the template
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: vamsireddy179/hello-world:latest 
-        ports:
-        - containerPort: 80
+    app: helloworld
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: NodePort
